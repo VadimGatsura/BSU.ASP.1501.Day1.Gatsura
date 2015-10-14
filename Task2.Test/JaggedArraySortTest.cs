@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Task2.Test {
@@ -70,6 +69,12 @@ namespace Task2.Test {
             IStructuralEquatable arrays = array;
 
             Assert.AreEqual(arrays.Equals(testArray, StructuralComparisons.StructuralEqualityComparer), true);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestNullArray() {
+            JaggedArraySort.SortByRowSum(null, true);
         }
     }
 }

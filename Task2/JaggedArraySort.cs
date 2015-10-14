@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Task2 {
     public abstract class JaggedArraySort {
@@ -32,7 +33,10 @@ namespace Task2 {
         /// <param name="array">Jagged array for sorting</param>
         /// <param name="asc">Sorting direction. <remarks>true - ascending, false - descending</remarks></param>
         public static void SortByRowSum(int[][] array, bool asc) {
-                Sort(array, asc, (array1, array2) => {
+            if(array == null)
+                throw new ArgumentNullException(nameof(array));
+
+            Sort(array, asc, (array1, array2) => {
                     if (array1 == null && array2 == null)
                         return 0;
                     if (array1 == null)
@@ -45,7 +49,7 @@ namespace Task2 {
                     if (firstSum > secondSum)
                         return 1;
                     return -1;
-                });
+            });
         }
 
         /// <summary>
@@ -54,6 +58,9 @@ namespace Task2 {
         /// <param name="array">Jagged array for sorting</param>
         /// <param name="asc">Sorting direction. <remarks>true - ascending, false - descending</remarks></param>
         public static void SortByMaxRowElement(int[][] array, bool asc) {
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+
             Sort(array, asc, (array1, array2) => {
                 if (array1 == null && array2 == null)
                     return 0;
@@ -76,6 +83,9 @@ namespace Task2 {
         /// <param name="array">Jagged array for sorting</param>
         /// <param name="asc">Sorting direction. <remarks>true - ascending, false - descending</remarks></param>
         public static void SortByMinRowElement(int[][] array, bool asc) {
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+
             Sort(array, asc, (array1, array2) => {
                 if (array1 == null && array2 == null)
                     return 0;
