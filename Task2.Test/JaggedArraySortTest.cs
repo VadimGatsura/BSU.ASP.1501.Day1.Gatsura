@@ -32,7 +32,7 @@ namespace Task2.Test {
         public void TestAscMaxElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 0 }, new[] { 4, 3, 8, 5, 7 }, new[] { 4, 2, -1, 9, -8, 10 }, null, null };
-            JaggedArraySort.SortByMaxInRow(array, true);
+            JaggedArraySort.SortByMaxRowElement(array, true);
 
             IStructuralEquatable arrays = array;
 
@@ -43,7 +43,7 @@ namespace Task2.Test {
         public void TestDescMaxElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 4, 3, 8, 5, 7 },  new[] { 0 }, null, null };
-            JaggedArraySort.SortByMaxInRow(array, false);
+            JaggedArraySort.SortByMaxRowElement(array, false);
 
             IStructuralEquatable arrays = array;
 
@@ -54,7 +54,7 @@ namespace Task2.Test {
         public void TestAscMinElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 }, null, null };
-            JaggedArraySort.SortByMinInRow(array, true);
+            JaggedArraySort.SortByMinRowElement(array, true);
 
             IStructuralEquatable arrays = array;
 
@@ -65,7 +65,7 @@ namespace Task2.Test {
         public void TestDescMinElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 4, 3, 8, 5, 7 },  new[] { 0 }, new[] { 4, 2, -1, 9, -8, 10 }, null, null };
-            JaggedArraySort.SortByMinInRow(array, false);
+            JaggedArraySort.SortByMinRowElement(array, false);
 
             IStructuralEquatable arrays = array;
 
