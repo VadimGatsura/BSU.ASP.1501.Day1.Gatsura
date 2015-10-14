@@ -5,34 +5,51 @@ namespace Task1.Test {
     [TestClass]
     public class NewtonMethodTest {
         [TestMethod]
-        public void TestRootValue() {
-            Assert.AreEqual( NewtonMethod.Root(4,2,0.000001), Math.Round(Math.Pow(4, 1.0 / 2), 6) );
-            Assert.AreEqual( NewtonMethod.Root(32, 5, 0.000001), Math.Round(Math.Pow(32, 1.0 / 5), 6) );
+        public void TestIntRootValue() {
+            Assert.AreEqual( NewtonMethod.Root(32, 5, 6), Math.Pow(32, 1.0 / 5), 0.000001  );
+        }
 
-            Assert.AreEqual( NewtonMethod.Root(2, 3, 0.000001), Math.Round(Math.Pow(2, 1.0 / 3), 6) );
-            Assert.AreEqual( NewtonMethod.Root(0, 2, 0.000001), Math.Round(Math.Pow(0, 1.0 / 2), 6) );
-
-            Assert.AreEqual( NewtonMethod.Root(-8, 3, 0.000001), Math.Round(Math.Pow(8, 1.0 / 3), 6) * (-1) );  //multiple by (-1), because MathPow(-8, 1.0 / 3) return NaN. That's not true.
-
+        [TestMethod]
+        public void TestDoubleRootValue() {
+            Assert.AreEqual(NewtonMethod.Root(32, 7, 6), Math.Pow(32, 1.0/7), 0.000001);
         }
 
         [TestMethod]
         public void TestPrecision() {
-            Assert.AreEqual( NewtonMethod.Root(10, 2, 0.000001), 3.162277, 0.000001 );
             Assert.AreEqual( NewtonMethod.Root(10, 2, 1), 3, 1 );
         }
 
         [TestMethod]
-        public void TestNaN() {
-            Assert.AreEqual( NewtonMethod.Root(-2, 2, 0.000001), Math.Round(Math.Pow(-2, 1d / 2), 6) );
+        public void TestMaxPrecision() {
+            Assert.AreEqual(NewtonMethod.Root(10, 2, 15), Math.Pow(10, 1.0 / 2), 0.000000000000001);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestArgumentExceptions() {
-            NewtonMethod.Root(2, 2, -1);
-            NewtonMethod.Root(2, 2, 1.3);
-            NewtonMethod.Root(2, 2, 0);
+        public void TestNaNRoot() {
+            Assert.AreEqual( NewtonMethod.Root(-2, 2, 6), Math.Round(Math.Pow(-2, 1d / 2), 6) );
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestArgumentExceptions() {
+            NewtonMethod.Root(2, 2, 16);
+        }
+
+
+        [TestMethod]
+        public void TestDoubleValue() {
+            Assert.AreEqual( NewtonMethod.Root(5.6, 2, 6), Math.Pow(5.6, 1.0 / 2), 0.000001);
+        }
+
+        [TestMethod]
+        public void TestNegativeValue() {
+            Assert.AreEqual(NewtonMethod.Root(-8, 3, 6), Math.Pow(8, 1.0 / 3) * (-1), 0.000001);  //multiple by (-1), because MathPow(-8, 1.0 / 3) return NaN. That's not true.    
+        }
+
+        [TestMethod]
+        public void TestZeroValue() {
+            Assert.AreEqual(NewtonMethod.Root(0, 2, 6), Math.Pow(0, 1.0 / 2), 0.000001);
+        }
+
     }
 }
