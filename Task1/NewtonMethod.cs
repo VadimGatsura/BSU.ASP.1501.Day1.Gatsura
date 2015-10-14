@@ -12,18 +12,19 @@ namespace Task1 {
         public static double Root(double value, uint n, uint digits) {
             if(digits > 15)
                 throw new ArgumentOutOfRangeException(nameof(digits));
+
             if (value < 0 && n % 2 == 0)
                 return double.NaN;
+
             if (Math.Abs(value) < Math.Pow(0.1, digits))
                 return 0;
-            double k = value;
-            double x0 = value;
-            double x1 = x0 - (Math.Pow(x0, n) - k)/(Math.Pow(x0, n - 1)*n);
 
-            while (Math.Abs(x1 - x0) > Math.Pow(0.1, digits)) {
+            double x0, x1 = value, k = value; 
+
+            do {
                 x0 = x1;
                 x1 = x0 - (Math.Pow(x0, n) - k)/(Math.Pow(x0, n - 1)*n);
-            }
+            } while (Math.Abs(x1 - x0) > Math.Pow(0.1, digits));
 
             return Math.Round(x1, (int) digits);
         }

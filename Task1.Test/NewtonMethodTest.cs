@@ -15,6 +15,11 @@ namespace Task1.Test {
         }
 
         [TestMethod]
+        public void TestNaNValue() {
+            Assert.AreEqual(NewtonMethod.Root(double.NaN, 4, 5), double.NaN);
+        }
+
+        [TestMethod]
         public void TestPrecision() {
             Assert.AreEqual( NewtonMethod.Root(10, 2, 1), 3, 1 );
         }
