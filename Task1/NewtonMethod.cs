@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 
 namespace Task1 {
     public abstract class NewtonMethod {
