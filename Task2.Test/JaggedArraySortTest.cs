@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Task2.JaggedArraySort;
 
 namespace Task2.Test {
     [TestClass]
@@ -9,7 +11,7 @@ namespace Task2.Test {
         public void TestAscRowSum() {
             int[][] array = { new []{4, 2, -1, 9, -8, 10}, new[]{0}, null, null, new []{4, 3, 8, 5,7} };
             int[][] testArray = { new[] { 0 }, new[] { 4, 2, -1, 9, -8, 10 }, new[] { 4, 3, 8, 5, 7 }, null, null };
-            JaggedArraySort.SortByRowSum(array, true);
+            Sort(array, CompareRowSum);
 
             IStructuralEquatable arrays = array;
 
@@ -19,8 +21,9 @@ namespace Task2.Test {
         [TestMethod]
         public void TestDescRowSum() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
-            int[][] testArray = { new[] { 4, 3, 8, 5, 7 }, new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null };
-            JaggedArraySort.SortByRowSum(array, false);
+            int[][] testArray = { null, null, new[] { 4, 3, 8, 5, 7 }, new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 } };
+            Sort(array, CompareRowSum);
+            array = array.Reverse().ToArray();
 
             IStructuralEquatable arrays = array;
 
@@ -31,7 +34,7 @@ namespace Task2.Test {
         public void TestAscMaxElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 0 }, new[] { 4, 3, 8, 5, 7 }, new[] { 4, 2, -1, 9, -8, 10 }, null, null };
-            JaggedArraySort.SortByMaxRowElement(array, true);
+            Sort(array, CompareMaxRowElement);
 
             IStructuralEquatable arrays = array;
 
@@ -41,8 +44,9 @@ namespace Task2.Test {
         [TestMethod]
         public void TestDescMaxElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
-            int[][] testArray = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 4, 3, 8, 5, 7 },  new[] { 0 }, null, null };
-            JaggedArraySort.SortByMaxRowElement(array, false);
+            int[][] testArray = { null, null, new[] { 4, 2, -1, 9, -8, 10 }, new[] { 4, 3, 8, 5, 7 },  new[] { 0 }};
+            Sort(array, CompareMaxRowElement);
+            array = array.Reverse().ToArray();
 
             IStructuralEquatable arrays = array;
 
@@ -53,7 +57,7 @@ namespace Task2.Test {
         public void TestAscMinElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
             int[][] testArray = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, new[] { 4, 3, 8, 5, 7 }, null, null };
-            JaggedArraySort.SortByMinRowElement(array, true);
+            Sort(array, CompareMinRowElement);
 
             IStructuralEquatable arrays = array;
 
@@ -63,8 +67,9 @@ namespace Task2.Test {
         [TestMethod]
         public void TestDescMinElement() {
             int[][] array = { new[] { 4, 2, -1, 9, -8, 10 }, new[] { 0 }, null, null, new[] { 4, 3, 8, 5, 7 } };
-            int[][] testArray = { new[] { 4, 3, 8, 5, 7 },  new[] { 0 }, new[] { 4, 2, -1, 9, -8, 10 }, null, null };
-            JaggedArraySort.SortByMinRowElement(array, false);
+            int[][] testArray = { null, null, new[] { 4, 3, 8, 5, 7 },  new[] { 0 }, new[] { 4, 2, -1, 9, -8, 10 } };
+            Sort(array, CompareMinRowElement);
+            array = array.Reverse().ToArray();
 
             IStructuralEquatable arrays = array;
 
@@ -74,7 +79,7 @@ namespace Task2.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNullArray() {
-            JaggedArraySort.SortByRowSum(null, true);
+            Sort(null, CompareRowSum);
         }
     }
 }
